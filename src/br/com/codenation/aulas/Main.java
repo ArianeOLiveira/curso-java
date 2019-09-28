@@ -1,14 +1,12 @@
 package br.com.codenation.aulas;
 
-import java.util.ArrayList;
+import java.lang.reflect.Field;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
-import br.com.codenation.aulas.segunda.rh.Funcionario;
-import br.com.codenation.aulas.segunda.rh.Login;
-import br.com.codenation.aulas.segunda.rh.Secretario;
-import br.com.codenation.aulas.segunda.rh.validacoes.ValidacaoFuncionario;
+import br.com.codenation.aulas.rh.Gerente;
+import br.com.codenation.aulas.rh.Login;
+import br.com.codenation.aulas.segunda.validacoes.ValidacaoFuncionario;
 
 public class Main {
 
@@ -24,13 +22,12 @@ public class Main {
 			Date nascimento = c.getTime();
 
 			Login login = new Login("ariane.almeida", "abcdefghi");
-			Funcionario secretario = new Secretario("Ariane Oliveira", nascimento, "15153159874", login, 1.500);
+			Gerente gerente = new Gerente("Ariane Oliveira", nascimento, "15153159874", login, 1.500);
 
-			List<Integer> teste = new ArrayList<>();
-			
-			
-			
-			System.out.print(secretario.retornaFuncionario());
+			Class<Gerente> classe = Gerente.class;
+			for (Field atributo : classe.getDeclaredFields()) {
+			  System.out.println(atributo.getName());      
+			}
 
 		} catch (ValidacaoFuncionario | NullPointerException e) {
 			System.out.print(e.getMessage());
